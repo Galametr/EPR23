@@ -20,27 +20,35 @@ namespace Malovani
     /// </summary>
     public partial class MainWindow : Window
     {
-        private SolidColorBrush currentColor = Brushes.Black;
+       static int barva = 0;
+
+        static List<SolidColorBrush> barvy = new List<SolidColorBrush>() { Brushes.Black ,Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed, Brushes.Black, Brushes.Red, Brushes.Purple, Brushes.Pink, Brushes.HotPink, Brushes.DarkOliveGreen, Brushes.Yellow, Brushes.OrangeRed };
+
+        
+
+        
 
         public MainWindow()
         {
             InitializeComponent();
-           
+
         }
 
-       
+        
+
         void DrawCircle(Point position)
         {
             Ellipse circle = new Ellipse();
-            circle.Fill = currentColor;
-            circle.Stroke = currentColor;
-            circle.StrokeThickness = 1;
-            circle.Width = 20;
-            circle.Height = 20;
+            circle.Fill = barvy[barva] ;
+            circle.Stroke = barvy[barva];
+            circle.StrokeThickness = 100;
+            circle.Width = 100;
+            circle.Height = 100;
 
             Canvas.SetLeft(circle, position.X);
             Canvas.SetTop(circle, position.Y);   
             
+
             canvas.Children.Add(circle);
         }
 
@@ -56,6 +64,14 @@ namespace Malovani
         private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DrawCircle(e.GetPosition(canvas));
+        }
+
+        private void canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.RightButton == MouseButtonState.Pressed) {
+                barva = barva + 1;
+            }
+            
         }
     }
 }
